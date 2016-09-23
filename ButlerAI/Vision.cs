@@ -19,12 +19,12 @@ namespace ButlerAI
     /// </summary>
     public class Vision
     {
-        private Capture captureDevice = null;
+        private readonly Capture captureDevice = null;
 
 
         public Vision()
         {
-            captureDevice = new Capture(@"C:\per\billy.mp4");
+            captureDevice = new Capture();
         }
         
         /// <summary>
@@ -36,10 +36,19 @@ namespace ButlerAI
             return frame.ToImage<Gray,byte>().ToBitmap();
         }
 
-        public void FrameGrab()
+        public Image WebCameView;
+        private Mat currentFrame = new Mat();
+        private Mat resizedFrame = new Mat();
+
+        public void GrabFrame(object sender, EventArgs e)
         {
-            
+
+            captureDevice.Retrieve(currentFrame, 0);
+            CvInvoke.Resize(resizedFrame, currentFrame, new Size(320, 240), 0, 0, Emgu.CV.CvEnum.Inter.Cubic);
+
         }
+
+        
     }
 
     
