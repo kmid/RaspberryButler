@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButlerUI", "ButlerUI\ButlerUI.csproj", "{5D6C6900-C7A8-4FB0-9F44-C573D220D29D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButlerAI", "ButlerAI\ButlerAI\ButlerAI.csproj", "{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D6C6900-C7A8-4FB0-9F44-C573D220D29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6C6900-C7A8-4FB0-9F44-C573D220D29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6C6900-C7A8-4FB0-9F44-C573D220D29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6C6900-C7A8-4FB0-9F44-C573D220D29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
