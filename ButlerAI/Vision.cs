@@ -8,7 +8,7 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using System.Drawing;
-
+using Emgu.CV.Face;
 
 
 namespace ButlerAI
@@ -21,34 +21,57 @@ namespace ButlerAI
     {
         private readonly Capture captureDevice = null;
 
-
+        private CascadeClassifier faceDetector;
         public Vision()
         {
             captureDevice = new Capture();
-        }
-        
-        /// <summary>
-        /// Get a list of areas containing detected faces 
-        /// </summary>
-        public Bitmap GetFaces()
-        {
-            var frame = captureDevice.QueryFrame();
-            return frame.ToImage<Gray,byte>().ToBitmap();
-        }
+            faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+        }       
 
-        public Image WebCameView;
+
+        public Image WebCamView { get; private set; }
+        public Image ProcessedImage {get; private set;}
+        public List<Image> FacesDetected { get; private set; }
+
+        public event EventHandler FrameScanned;
         private Mat currentFrame = new Mat();
-        private Mat resizedFrame = new Mat();
+        private Mat grayFrame = new Mat();              
 
-        public void GrabFrame(object sender, EventArgs e)
+        public void ScanFrameForFaces(object sender, EventArgs e)
         {
-
             captureDevice.Retrieve(currentFrame, 0);
-            CvInvoke.Resize(resizedFrame, currentFrame, new Size(320, 240), 0, 0, Emgu.CV.CvEnum.Inter.Cubic);
+            CvInvoke.Resize(currentFrame, currentFrame, new Size(320, 240));
+            CvInvoke.CvtColor(currentFrame, grayFrame, Emgu.CV.CvEnum.ColorConversion.Bgr2Gray);
+            CvInvoke.EqualizeHist(grayFrame, grayFrame);
 
+            Rectangle[] facesDetected = (faceDetector.DetectMultiScale(grayFrame, 1.1, 10, new Size(50, 50)));
+
+            FacesDetected = new List<Image>();
+
+            //Extract the scanned frames only if we have the handler wired up from the calling library
+            var frameScanned = FrameScanned;
+            if (frameScanned != null)
+            {
+                //Draw a red box around each detected face
+                //and extract each face
+                foreach (Rectangle face in facesDetected)
+                {
+                    CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar, 2);
+                    var f = new Mat(grayFrame, face);
+                    CvInvoke.Resize(f, f, new Size(100, 100));
+                    FacesDetected.Add(f.Bitmap);
+                }
+
+                WebCamView = currentFrame.Bitmap;
+                ProcessedImage = grayFrame.Bitmap;
+                frameScanned(this, e);
+            }
         }
 
+
         
+
+
     }
 
     
