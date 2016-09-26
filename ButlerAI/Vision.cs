@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
 using Emgu.CV;
 using Emgu.CV.Structure;
-using Emgu.CV.UI;
 using System.Drawing;
-using Emgu.CV.Face;
+
 
 
 namespace ButlerAI
@@ -25,7 +23,8 @@ namespace ButlerAI
         public Vision()
         {
             captureDevice = new Capture();
-            faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+            //faceDetector = new CascadeClassifier("haarcascade_frontalface_default.xml");
+            faceDetector = new CascadeClassifier("haarcascade_profileface.xml");
         }       
 
 

@@ -5,16 +5,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84D61E7D-3B30-43C4-A7E4-4707A3FA7630}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4151FC87-9E2B-4685-921B-A781E25147F3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ButlerAI</RootNamespace>
-    <AssemblyName>ButlerAI</AssemblyName>
+    <RootNamespace>ImageToData</RootNamespace>
+    <AssemblyName>ImageToData</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>16a987d8</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>895b578a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -71,15 +73,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacialRecognition.cs" />
-    <Compile Include="MatchedData.cs" />
-    <Compile Include="TrainingData.cs" />
-    <Compile Include="Vision.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ButlerAI\ButlerAI.csproj">
+      <Project>{84d61e7d-3b30-43c4-a7e4-4707a3fa7630}</Project>
+      <Name>ButlerAI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
